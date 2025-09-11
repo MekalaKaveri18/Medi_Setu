@@ -1,0 +1,1006 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Medicine</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #333;
+      padding: 15px 20px;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .login-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .login-btn {
+      margin-right: 15px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .signup-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .signup-btn {
+      margin-right: 15px;
+      color: white;
+      text-decoration: none;
+    }
+
+
+
+    /* Mobile Menu */
+    .hamburger-menu {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    .wallet-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .wallet-btn {
+      margin-right: 15px;
+      color: white;
+      text-decoration: none;
+      background-color: #4CAF50;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .wallet-btn:hover {
+      background-color: #45a049;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+
+      .nav-links,
+      .login-container {
+        display: none;
+      }
+
+      .hamburger-menu {
+        display: block;
+      }
+    }
+
+
+    #chat-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s;
+    }
+
+    #chat-toggle:hover {
+      background-color: #5a52d1;
+    }
+
+    /* Chat container */
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+      width: 350px;
+      max-height: 500px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .chat-header {
+      background-color: #6c63ff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .message.bot .content {
+      background-color: #e0e0e0;
+      color: #333;
+      border-radius: 10px 10px 10px 0;
+      padding: 10px 15px;
+      max-width: 80%;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message.user .content {
+      background-color: #4caf50;
+      color: white;
+      border-radius: 10px 10px 0 10px;
+      padding: 10px 15px;
+      max-width: 80%;
+    }
+
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .input-area button {
+      background-color: #6c63ff;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .input-area button:hover {
+      background-color: #5a52d1;
+    }
+
+    .chat-box::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-box::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+  </style>
+
+
+</head>
+
+<!-- Pera Wallet SDK -->
+<script src="https://unpkg.com/@perawallet/connect"></script>
+
+
+<body>
+
+  <div class="hero_area">
+    <!-- header section strats -->
+
+    <nav>
+      <!-- Logo -->
+      <div class="logo">
+        <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\logo.gif" alt="GIF Logo" width="300"
+          height="600">
+
+        <span>MediSetu</span>
+      </div>
+
+      <!-- Navigation Links -->
+      <!-- <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <a href="lender.html" onclick="checkSignupForLender(); return false;">Lender</a>
+        <a href="borrower.html" onclick="checkSignupForBorrower(); return false;">Borrower</a>
+
+      </ul> -->
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="lender.html" id="lenderLink">Lender</a></li>
+          <li><a href="borrower.html" id="borrowerLink">Borrower</a></li>
+        </ul>
+      </nav>
+      <!-- Search Bar -->
+      
+
+      <div class="wallet-container">
+        <button onclick="redirectToPera()" class="wallet-btn">Download Pera Wallet</button>
+        <p id="wallet-status"></p>
+      </div>
+
+      <!-- Login & Signup -->
+      <div class="login_btn-container">
+        <a href="login.html" class="login-btn">Login</a>
+
+        <!-- Signup Dropdown borrower-signup.html -->
+
+        <div class="signup-container">
+          <a href="borrower-signup.html" class="signup-btn">Signup</a>
+
+          <!-- Mobile Menu Icon -->
+          <div class="hamburger-menu" onclick="toggleMenu()">
+            <i class="fa fa-bars"></i>
+          </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <ul class="mobile-nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#" class="login-btn">Login</a></li>
+      <li><a href="#">Sign Up</a></li>
+    </ul>
+
+
+    <script>
+      const peraWallet = new PeraWalletConnect();
+
+      async function connectWallet() {
+        try {
+          const accounts = await peraWallet.connect();
+          const walletAddress = accounts[0];
+          console.log("Connected Wallet:", walletAddress);
+
+          // Store wallet address in localStorage or show in UI
+          localStorage.setItem("walletAddress", walletAddress);
+          document.getElementById("wallet-status").innerText = "Connected: " + walletAddress;
+        } catch (error) {
+          console.error("Wallet connection failed", error);
+        }
+      }
+
+      // Optional: Disconnect
+      async function disconnectWallet() {
+        await peraWallet.disconnect();
+        localStorage.removeItem("walletAddress");
+        document.getElementById("wallet-status").innerText = "Wallet disconnected";
+      }
+    </script>
+
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class=" slider_section position-relative">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-box">
+                    <img src="images/medicine.png" alt="logo">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="detail-box">
+                    <h1>
+                      Welcome To The <br>
+                      <span>
+                        MediSetu
+                      </span>
+
+                    </h1>
+                    <h4 style="font-family: Times New Roman; color: black;">
+                      MediSetu – Connecting People, Saving Lives! 💊
+                      A trusted platform for lending and borrowing medicines with ease. Find or share medicines
+                      securely, ensuring they reach the right people when needed. Join us and make a difference today!
+                    </h4>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-box">
+                    <img src="images/medicine.png" alt="">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="detail-box">
+                    <h1>
+                      Welcome To Our <br>
+                      <span>
+                        MediSetu
+                      </span>
+
+                    </h1>
+                    <h4 style="font-family: 'Times New Roman'; color: black;">
+                      Your Bridge to Accessible Medicines
+                      A trusted platform for lending and borrowing medicines with ease and security.</h4>
+                    <h4 style="font-family: 'Times New Roman';  color: black;">Lend unused medicines to those in need
+                    </h4>
+                    <h4 style="font-family: 'Times New Roman';color: black;">Borrow medicines quickly and efficiently
+                    </h4>
+                    <h4 style="font-family: 'Times New Roman';  color: black;">Ensure authenticity with QR-based
+                      tracking</h4>
+                    <h4 style="font-family: 'Times New Roman'; color: black;">Seamless and secure transactions</h4>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="img-box">
+                    <img src="images/medicine.png" alt="">
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="detail-box">
+                    <h1>
+                      Welcome To Our <br>
+                      <span>
+                        MediSetu
+                      </span>
+
+                    </h1>
+                    <h4 style="font-family: 'Times New Roman';  color: black;">
+                      Ensures safe, verified exchanges, making healthcare more accessible and efficient for everyone.
+                    </h4>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <section class="feature_section  layout_padding">
+    <div class="container">
+      <div class="feature_container">
+        <div class="box">
+          <div class="img-box">
+            <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\medicine_xchange.jpg"
+              alt="medicine_exchange" width="60" height="60">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Medicine Exchange
+            </h5>
+            <p>
+              Users can list unused, unexpired medicines for lending or request medicines they need.
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\secure_private.png"
+              alt="medicine_exchange" width="60" height="60">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Secure & Private
+            </h5>
+            <p>
+              Protects user data and ensures safe communication between lenders and borrowers.
+            </p>
+          </div>
+        </div>
+        <div class="box">
+          <div class="img-box">
+            <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\donation_lending.jpg"
+              alt="medicine_exchange" width="60" height="60">
+          </div>
+          <div class="detail-box">
+            <h5>
+              Donation & Lending Options
+            </h5>
+            <p>
+              Choose to lend medicines for free, or at a minimal cost, or in exchange for another medicine.
+            </p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <!-- end feature section -->
+  <button id="chat-toggle">💬</button>
+
+  <!-- Chat Container -->
+  <div id="chat-container">
+    <div class="chat-header">MediBot</div>
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">
+        <div class="content">👩‍⚕️ Hi! I'm MediBot. How can I assist you with medicine donations or requests?</div>
+      </div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- client section -->
+  <section class="client_section layout_padding">
+    <div class="container">
+      <div class="custom_heading-container">
+        <h2>What our clients say</h2>
+      </div>
+      <div id="carouselExample2Indicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExample2Indicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExample2Indicators" data-slide-to="1"></li>
+          <li data-target="#carouselExample2Indicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <!-- Feedback 1: Anjali Mehta -->
+          <div class="carousel-item active">
+            <div class="client_container layout_padding2">
+              <div class="client_detail">
+                <p>
+                  "MediSetu has truly transformed the way I access healthcare information. The platform is
+                  user-friendly, and I can easily find the right resources for my needs. I love the idea of a
+                  community-driven approach that connects people for better healthcare outcomes!"
+                </p>
+              </div>
+              <div class="client_box">
+                <div class="img-box">
+                  <img src="images/user1.jpg" alt="Client Image" height="100" ,width="100">
+                </div>
+                <div class="name">
+                  <h5>Anjali Mehta</h5>
+                  <h6><span>Client</span> <img src="images/quote.png" alt="Quote Icon"></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feedback 2: Rahul Verma -->
+          <div class="carousel-item">
+            <div class="client_container layout_padding2">
+              <div class="client_detail">
+                <p>
+                  "As someone who regularly needs medication guidance, MediSetu has been a blessing. The clear
+                  information and support from the community make it easier to navigate complex health topics. Highly
+                  recommended!"
+                </p>
+              </div>
+              <div class="client_box">
+                <div class="img-box">
+                  <img src="images/user2.jpg" alt="Client Image" height="100" ,width="100">
+                </div>
+                <div class="name">
+                  <h5>Rahul Verma</h5>
+                  <h6><span>Client</span> <img src="images/quote.png" alt="Quote Icon"></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feedback 3: Sneha Kapoor -->
+          <div class="carousel-item">
+            <div class="client_container layout_padding2">
+              <div class="client_detail">
+                <p>
+                  "MediSetu stands out as a trustworthy source for health information. The platform’s efforts to bring
+                  together healthcare providers and patients on a single platform are impressive. It has made healthcare
+                  more accessible and convenient for me."
+                </p>
+              </div>
+              <div class="client_box">
+                <div class="img-box">
+                  <img src="images/user3.png" alt="Client Image" height="100" ,width="100">
+                </div>
+                <div class="name">
+                  <h5>Sneha Kapoor</h5>
+                  <h6><span>Client</span> <img src="images/quote.png" alt="Quote Icon"></h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end client section -->
+
+  <!-- contact section -->
+  <section class="contact_section">
+    <div class="container">
+      <div class="row">
+        <div class="custom_heading-container">
+          <h2>
+            Request A call back
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="container layout_padding2">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="form_contaier">
+            <form id="contactForm">
+              <div class="form-group">
+                <label for="exampleInputName1">Name</label>
+                <input type="text" class="form-control" id="exampleInputName1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputNumber1">Phone Number</label>
+                <input type="text" class="form-control" id="exampleInputNumber1">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1">
+              </div>
+              <div class="form-group">
+                <label for="inputState">Select medicine</label>
+                <select id="inputState" class="form-control">
+                  <option selected>Medicine 1</option>
+                  <option>Medicine 2</option>
+                  <option>Medicine 3</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputMessage">Message</label>
+                <input type="text" class="form-control" id="exampleInputMessage">
+              </div>
+              <button type="button" onclick="handleSubmit()">Send</button>
+
+              <!-- ✅ Confirmation message -->
+              <div id="formMessage" style="margin-top: 10px; color: green;"></div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="detail-box">
+            <h3>
+              Get Now Medicines
+            </h3>
+            <p>
+              There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration
+              in some form, by injected humour, or randomised words which don't look even slightly believable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ Script for form handling -->
+
+
+  <!-- end contact section -->
+
+  <!-- info section -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              Contact
+            </h4>
+            <div class="box">
+              <div class="img-box">
+                <img src="images/telephone-symbol-button.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  +01 123567894
+                </h6>
+              </div>
+            </div>
+            <div class="box">
+              <div class="img-box">
+                <img src="images/email.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  demo@gmail
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h4>
+              Menu
+            </h4>
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html"> About </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lender.html"> Lender </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="borrower.html"> Borrower </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="feedbackform.html"> Feedback </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info_news">
+            <h4>
+              newsletter
+            </h4>
+            <form id="subscribeForm">
+              <div class="form-group">
+                <input type="email" id="emailInput" class="form-control" placeholder="Enter your email" required>
+              </div>
+
+              <div class="d-flex justify-content-center justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary px-4">
+                  Subscribe
+                </button>
+              </div>
+
+              <!-- ✅ Message display -->
+              <div id="subscribeMessage" class="mt-2" style="color: green; text-align: center;"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- end info section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+
+  </section>
+  <!-- footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+  </script>
+  <script type="text/javascript">
+    $(".owl-carousel").owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      navText: [],
+      autoplay: true,
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 2
+        },
+        1000: {
+          items: 4
+        }
+      }
+    });
+  </script>
+  <script type="text/javascript">
+    $(".owl-2").owlCarousel({
+      loop: true,
+      margin: 10,
+      nav: true,
+      navText: [],
+      autoplay: true,
+
+      responsive: {
+        0: {
+          items: 1
+        },
+        600: {
+          items: 2
+        },
+        1000: {
+          items: 4
+        }
+      }
+    });
+  </script>
+  <script>
+    function toggleDropdown() {
+      document.getElementById("signup-options").classList.toggle("show");
+    }
+
+    // Close dropdown when clicking outside
+    window.onclick = function (event) {
+      if (!event.target.matches('.signup-btn')) {
+        document.getElementById("signup-options").classList.remove("show");
+      }
+    }
+  </script>
+  <script>
+    function handleSubmit() {
+      // You can add form validation here if needed
+      document.getElementById("formMessage").innerText = "Thank you! We'll get back to you shortly.";
+
+      // Reset the form
+      document.getElementById("contactForm").reset();
+    }
+  </script>
+
+  <script>
+    document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop form from refreshing
+
+      const email = document.getElementById("emailInput").value;
+      const messageDiv = document.getElementById("subscribeMessage");
+
+      // Basic email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailPattern.test(email)) {
+        messageDiv.style.color = "green";
+        messageDiv.textContent = "Thanks for subscribing!";
+        this.reset();
+      } else {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Please enter a valid email address.";
+      }
+    });
+  </script>
+
+  <script>
+    function redirectToPera() {
+      window.location.href = "https://perawallet.app/";
+    }
+  </script>
+
+  <script>
+    const medicineDB = ["paracetamol", "amoxicillin", "ibuprofen", "cetirizine", "metformin"];
+
+    function appendMessage(text, type) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${type}`;
+
+      const contentDiv = document.createElement("div");
+      contentDiv.className = "content";
+      contentDiv.innerHTML = text;
+
+      msgDiv.appendChild(contentDiv);
+      document.getElementById("chat-box").appendChild(msgDiv);
+      document.getElementById("chat-box").scrollTop = document.getElementById("chat-box").scrollHeight;
+    }
+
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+
+      appendMessage(message, "user");
+      input.value = "";
+
+      const lower = message.toLowerCase();
+
+      if (lower.includes("donate")) {
+        appendMessage("🙏 You can donate medicine by filling the donation form here: <a href='form.html'>Donation Form</a>", "bot");
+      } else if (lower.includes("lend") || lower.includes("request")) {
+        appendMessage("📦 You can lend medicine by filling the form here: <a href='form.html'>Donation Form</a>", "bot");
+      } else if (
+        lower.includes("check on specific medicine name") ||
+        lower.includes("where can i borrow") ||
+        lower.includes("borrow free medicine") || lower.includes("borrow")
+      ) {
+        appendMessage("You can boorrow medicine by navigating to: <a href='borrower.html'>Borrower's Page</a>", "bot");
+      } else if (medicineDB.some(med => lower.includes(med))) {
+        const found = medicineDB.filter(med => lower.includes(med));
+        appendMessage(`✅ Yes, we have ${found.join(", ")} available.`, "bot");
+      } else if (lower.includes("hello") || lower.includes("hi")) {
+        appendMessage("👋 Hello! How can I assist you today?", "bot");
+      } else if (lower.includes("thank you") || lower.includes("thanks")) {
+        appendMessage("😊 You're very welcome! Stay healthy! 💜", "bot");
+      } else {
+        appendMessage("🤖 I can help you donate, request, or check medicine availability. Try asking about a specific medicine.", "bot");
+      }
+    }
+
+    // Send message on Enter key
+    document.getElementById("user-input").addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+    // Toggle chat open/close
+    document.getElementById("chat-toggle").addEventListener("click", function () {
+      const chatContainer = document.getElementById("chat-container");
+      const isVisible = chatContainer.style.opacity === "1";
+
+      if (isVisible) {
+        chatContainer.style.opacity = "0";
+        chatContainer.style.pointerEvents = "none";
+      } else {
+        chatContainer.style.opacity = "1";
+        chatContainer.style.pointerEvents = "auto";
+      }
+    });
+  </script>
+
+
+  <script>
+    // Function to check if the user is signed up
+    function checkSignupForLender() {
+      const isSignedUp = localStorage.getItem("isSignedUp");
+
+      if (!isSignedUp) {
+        alert("Please sign up to visit the lender page.");
+        window.location.href = "borrower-signup.html"; // Redirect to sign-up page
+      }
+    }
+
+    // Function to check if the user is signed up for borrower page
+    function checkSignupForBorrower() {
+      const isSignedUp = localStorage.getItem("isSignedUp");
+
+      if (!isSignedUp) {
+        alert("Please sign up to visit the borrower page.");
+        window.location.href = "borrower-signup.html"; // Redirect to sign-up page
+      }
+    }
+  </script>
+  <script>
+    // Example check: replace this with your actual login logic
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  
+    document.getElementById("lenderLink").addEventListener("click", function(event) {
+      if (!isLoggedIn) {
+        event.preventDefault();
+        alert("Please sign up or log in to access the Lender page.");
+      }
+    });
+  
+    document.getElementById("borrowerLink").addEventListener("click", function(event) {
+      if (!isLoggedIn) {
+        event.preventDefault();
+        alert("Please sign up or log in to access the Borrower page.");
+      }
+    });
+  </script>
+
+</body>
+
+</html>

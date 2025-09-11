@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup</title>
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #07cde3;
+      height: 100vh;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #333;
+      padding: 15px 30px;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #38d39f;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: calc(100vh - 80px);
+      padding: 20px;
+    }
+
+    .form-wrapper {
+      background: white;
+      border-radius: 10px;
+      display: flex;
+      width: 90%;
+      max-width: 1000px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .form-img {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .form-img img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    form {
+      flex: 1;
+      padding: 40px;
+    }
+
+    form h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .input-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      font-size: 16px;
+    }
+
+    .input-group i {
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 25px;
+      background: linear-gradient(to right, #2f61ce, #50a5eb);
+      color: white;
+      font-size: 16px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background-position 0.5s;
+    }
+
+    .btn:hover {
+      background-position: right;
+    }
+
+    @media (max-width: 768px) {
+      .form-wrapper {
+        flex-direction: column;
+      }
+
+      .form-img {
+        padding: 20px 0;
+      }
+
+      .form-img img {
+        max-width: 80%;
+      }
+
+      form {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="form-wrapper">
+
+      <!-- ✅ Image beside the form -->
+      <div class="form-img">
+        <img src="images/logo.gif" alt="Signup Illustration" />
+      </div>
+
+      <!-- ✅ Signup Form -->
+      <form id="signupForm">
+        <h2>Sign Up</h2>
+
+        <div class="input-group">
+          <input type="text" id="username" placeholder="Username" required />
+          <i class="fas fa-user"></i>
+        </div>
+
+        <div class="input-group">
+          <input type="email" id="email" placeholder="Email" required />
+          <i class="fas fa-envelope"></i>
+        </div>
+
+        <div class="input-group">
+          <input type="text" id="peraWallet" placeholder="Pera Wallet Address" required />
+          <i class="fas fa-wallet"></i>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="password" placeholder="Password" required />
+          <i class="fas fa-lock"></i>
+        </div>
+
+        <div class="input-group">
+          <input type="password" id="confirm-password" placeholder="Confirm Password" required />
+          <i class="fas fa-lock"></i>
+        </div>
+
+        <button type="submit" class="btn">Sign Up</button>
+        <div id="error-message" class="error-message"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ✅ Signup Script -->
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const peraWallet = document.getElementById('peraWallet').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const errorDiv = document.getElementById('error-message');
+      const btn = document.querySelector('.btn');
+
+      errorDiv.textContent = '';
+      btn.disabled = true;
+      btn.textContent = 'Signing up...';
+
+
+      // Simple validation
+      if (!username || !email || !peraWallet || !password || !confirmPassword) {
+        errorDiv.textContent = 'All fields are required.';
+        btn.disabled = false;
+        btn.textContent = 'Sign Up';
+        return;
+      }
+
+
+      // if (password !== confirmPassword) {
+      //   errorDiv.textContent = 'Passwords do not match.';
+      //   btn.disabled = false;
+      //   btn.textContent = 'Sign Up';
+      //   return;
+      // }
+      const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
+
+if (password !== confirmPassword) {
+  errorDiv.textContent = 'Passwords do not match.';
+  btn.disabled = false;
+  btn.textContent = 'Sign Up';
+  return;
+}
+
+if (!passwordRegex.test(password)) {
+  errorDiv.textContent = 'Password must be at least 8 characters long and include at least 1 number and 1 special character.';
+  btn.disabled = false;
+  btn.textContent = 'Sign Up';
+  return;
+}
+
+
+      try {
+        const res = await fetch('http://localhost:5000/api/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            peraWallet,
+            password
+          })
+        });
+
+        let result = {};
+        try {
+          result = await res.json();
+        } catch (jsonErr) {
+          throw new Error('Invalid server response');
+        }
+
+        if (!res.ok) {
+          errorDiv.textContent = result.error || 'Registration failed.';
+        } else {
+          alert('Signup successful!');
+          window.location.href = 'login.html';
+        }
+
+      } catch (err) {
+        console.error('Signup error:', err);
+        errorDiv.textContent = 'An error occurred. Please try again later.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Sign Up';
+      }
+    });
+  </script>
+
+</body>
+
+</html>

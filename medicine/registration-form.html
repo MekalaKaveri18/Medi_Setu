@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be Part of Something Amazing</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        /* Registration Form Container */
+        .register-container {
+            background-color: #ffffff;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: slideIn 0.8s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .register-heading {
+            font-size: 2.5rem;
+            color: #1a237e;  /* Royal Blue */
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .input-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-box label {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .input-box input, .select-box select {
+            padding: 12px;
+            border: 2px solid #1a237e;  /* Royal Blue */
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #f0f0f5;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus, .select-box select:focus {
+            background-color: #ffffff;
+            border-color: #ff6f00;  /* Vibrant Orange */
+            box-shadow: 0 4px 10px rgba(255, 111, 0, 0.3);
+        }
+
+        .column {
+            display: flex;
+            gap: 15px;
+        }
+
+        .column .input-box {
+            flex: 1;
+        }
+
+        .gender-box {
+            margin-top: 15px;
+        }
+
+        .gender-box h3 {
+            font-size: 1.2rem;
+            color: #1a237e;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .gender-option {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .gender input {
+            margin-right: 5px;
+        }
+
+        .gender label {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            background-color: #ff6f00;  /* Vibrant Orange */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 111, 0, 0.4);
+        }
+
+        button:hover {
+            background-color: #e65100;  /* Darker Orange */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255, 111, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .column {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Registration Form -->
+    <section class="register-container">
+        <header class="register-heading">Be Part of Something Amazing</header>
+        <form action="#" class="form">
+            <div class="input-box">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your full name" required />
+            </div>
+            <div class="input-box">
+                <label>Email Address</label>
+                <input type="email" placeholder="Enter your email address" required />
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input type="tel" placeholder="Enter your phone number" required />
+                </div>
+                <div class="input-box">
+                    <label>Birth Date</label>
+                    <input type="date" required />
+                </div>
+            </div>
+            <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                    <div class="gender">
+                        <input type="radio" id="male" name="gender" checked />
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" id="female" name="gender" />
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="gender">
+                        <input type="radio" id="other" name="gender" />
+                        <label for="other">Prefer no
+                            t to say</label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-box">
+                <label>Address</label>
+                <input type="text" placeholder="Street address" required />
+                <input type="text" placeholder="Street address line 2" />
+                <div class="column">
+                    <div class="select-box">
+                        <select required>
+                            <option value="" hidden>Select Country</option>
+                            <option>America</option>
+                            <option>Japan</option>
+                            <option>India</option>
+                            <option>Nepal</option>
+                        </select>
+                    </div>
+                    <input type="text" placeholder="City" required />
+                </div>
+                <div class="column">
+                    <input type="text" placeholder="Region" required />
+                    <input type="number" placeholder="Postal code" required />
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+</body>
+</html>

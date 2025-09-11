@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>MediBot</title>
+  <style>
+    /* Chatbot UI Styles */
+    #chat-toggle {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #6c63ff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    #chat-toggle:hover {
+      background-color: #5a52d1;
+    }
+
+    #chat-container {
+      position: fixed;
+      bottom: 90px;
+      right: 30px;
+      width: 350px;
+      max-height: 500px;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    .chat-header {
+      background-color: #6c63ff;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .chat-box {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #f9f9f9;
+    }
+
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .message.bot .content {
+      background-color: #e0e0e0;
+      color: #333;
+      border-radius: 10px 10px 10px 0;
+      padding: 10px 15px;
+      max-width: 80%;
+    }
+
+    .message.user {
+      justify-content: flex-end;
+    }
+
+    .message.user .content {
+      background-color: #4caf50;
+      color: white;
+      border-radius: 10px 10px 0 10px;
+      padding: 10px 15px;
+      max-width: 80%;
+    }
+
+    .input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+
+    .input-area input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+    }
+
+    .input-area button {
+      background-color: #6c63ff;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+
+    .input-area button:hover {
+      background-color: #5a52d1;
+    }
+
+    .chat-box::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .chat-box::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Chatbot Toggle Button -->
+  <button id="chat-toggle">💬</button>
+
+  <!-- Chat Container -->
+  <div id="chat-container">
+    <div class="chat-header">MediBot</div>
+    <div class="chat-box" id="chat-box">
+      <div class="message bot">
+        <div class="content">👩‍⚕️ Hi! I'm MediBot. How can I assist you with medicine donations or health queries?
+        </div>
+      </div>
+    </div>
+    <div class="input-area">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Google Programmable Search Engine -->
+  <script async src="https://cse.google.com/cse.js?cx=YOUR_CX_ID"></script>
+  <gcse:searchresults-only></gcse:searchresults-only>
+
+  <script>
+    const medicineDB = ["paracetamol", "amoxicillin", "ibuprofen", "cetirizine", "metformin"];
+
+    function appendMessage(text, type) {
+      const msgDiv = document.createElement("div");
+      msgDiv.className = `message ${type}`;
+      const contentDiv = document.createElement("div");
+      contentDiv.className = "content";
+      contentDiv.innerHTML = text;
+      msgDiv.appendChild(contentDiv);
+      const chatBox = document.getElementById("chat-box");
+      chatBox.appendChild(msgDiv);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    function getTrustedMedicalSearchLink(query) {
+      const trustedSites = [
+        "site:cdc.gov",
+        "site:mayoclinic.org",
+        "site:nhs.uk",
+        "site:drugs.com",
+        "site:who.int"
+      ];
+      const siteQuery = trustedSites.join(" OR ");
+      const fullQuery = `${query} (${siteQuery})`;
+      const url = `https://www.google.com/search?q=${encodeURIComponent(fullQuery)}`;
+      return `<a href="${url}" target="_blank">Search trusted medical sources 🔗</a>`;
+    }
+
+
+    function sendMessage() {
+      const input = document.getElementById("user-input");
+      const message = input.value.trim();
+      if (!message) return;
+      appendMessage(message, "user");
+      input.value = "";
+
+      const lower = message.toLowerCase();
+
+      if (lower.includes("donate")) {
+        appendMessage("🙏 You can donate medicine by filling the form: <a href='form.html'>Donation Form</a>", "bot");
+      } else if (lower.includes("lend") || lower.includes("request") || lower.includes("borrow")) {
+        appendMessage("📦 You can borrow medicine here: <a href='borrower.html'>Borrower's Page</a>", "bot");
+      } else if (medicineDB.some(med => lower.includes(med))) {
+        const found = medicineDB.filter(med => lower.includes(med));
+        appendMessage(`✅ Yes, we have ${found.join(", ")} available.`, "bot");
+      } else if (
+        lower.includes("symptom") || lower.includes("side effect") ||
+        lower.includes("what is") || lower.includes("used for") ||
+        lower.includes("treatment for") || lower.includes("medicine for")
+      ) {
+        appendMessage(`🔍 You can find more here: ${getTrustedMedicalSearchLink(message)}`, "bot");
+
+      } else if (lower.includes("hello") || lower.includes("hi")) {
+        appendMessage("👋 Hello! How can I assist you today?", "bot");
+      } else if (lower.includes("thank you") || lower.includes("thanks")) {
+        appendMessage("😊 You're very welcome! Stay healthy! 💜", "bot");
+      } else {
+        appendMessage("🤖 I can help you donate, request, or check medicines. Try asking about a medicine or a symptom.", "bot");
+      }
+    }
+
+    document.getElementById("user-input").addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+      }
+    });
+
+    document.getElementById("chat-toggle").addEventListener("click", function () {
+      const chatContainer = document.getElementById("chat-container");
+      const isVisible = chatContainer.style.opacity === "1";
+      chatContainer.style.opacity = isVisible ? "0" : "1";
+      chatContainer.style.pointerEvents = isVisible ? "none" : "auto";
+    });
+  </script>
+
+</body>
+
+</html>

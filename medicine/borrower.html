@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Borrower Page</title>
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@perawallet/connect"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <style>
+  
+    body {
+      background-image: linear-gradient(to right, #e0f7fa, #ffffff);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    padding: 15px 20px;
+    color: white;
+}
+
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo img {
+        width: 50px;
+        margin-right: 10px;
+    }
+
+    .nav-links {
+        list-style: none;
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0 15px;
+    }
+
+    .nav-links a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .login-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .login-btn {
+        margin-right: 15px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .signup-dropdown {
+        position: relative;
+    }
+
+    .signup-btn {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background: white;
+        top: 30px;
+        right: 0;
+        min-width: 150px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-content a {
+        display: block;
+        padding: 10px;
+        text-decoration: none;
+        color: black;
+    }
+
+    .signup-dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .hamburger-menu {
+        display: none;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .mobile-nav {
+        display: none;
+        flex-direction: column;
+        background: #222;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .mobile-nav.active {
+        display: flex;
+    }
+
+    .mobile-nav a {
+        padding: 10px;
+        color: white;
+        text-decoration: none;
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .nav-links, .login-container {
+            display: none;
+        }
+
+        .hamburger-menu {
+            display: block;
+        }
+    }
+
+    /* Medicine Cards */
+    .medicine-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .medicine-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .modal {
+      display: none;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .borrower-medicine-card {
+      background-color: #f9f9f9;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 30px 20px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .borrower-medicine-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .borrower-medicine-card i {
+      font-size: 40px;
+      color: #1565c0;
+      margin-bottom: 15px;
+    }
+
+    .borrower-medicine-card h3 {
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .borrower-medicine-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="C:\Users\HP\Shivaji\Hanuman\medicine\images\logo.gif" alt="GIF Logo">
+      <span>MediSetu</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="lender.html">Lender</a></li>
+      <li><a href="borrower.html">Borrower</a></li>
+    </ul>
+
+    <!-- Login / Signup -->
+    
+
+    <!-- Hamburger Menu for Mobile View -->
+    <span class="hamburger-menu">☰</span>
+  </nav>
+
+  <body class="bg-gray-100 text-gray-800">
+
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 p-6">
+      <!-- Buy Section -->
+      <div>
+        <h1 class="text-3xl font-bold mb-6 text-center text-green-700">Buy</h1>
+        <div id="buyContainer" class="space-y-4"></div>
+      </div>
+  
+      <!-- Free Section -->
+      <div>
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-700">Free</h1>
+        <div id="freeContainer" class="space-y-4"></div>
+      </div>
+    </div>
+  
+    <script>
+      async function fetchMedicines() {
+        try {
+          const res = await fetch('http://localhost:5000/api/medicine/available');
+          const medicines = await res.json();
+  
+          const buyContainer = document.getElementById('buyContainer');
+          const freeContainer = document.getElementById('freeContainer');
+  
+          medicines.forEach(med => {
+            const card = document.createElement('div');
+            card.className = 'bg-white rounded-2xl shadow-md p-6';
+  
+            card.innerHTML = `
+              <div class="grid grid-cols-2 gap-4 md:grid-cols-${med.cost > 0 ? '5' : '4'}">
+                <div><h2 class="font-semibold text-gray-700">Name</h2><p>${med.lender_name}</p></div>
+                <div><h2 class="font-semibold text-gray-700">Medicine</h2><p>${med.medicine_name}</p></div>
+                <div><h2 class="font-semibold text-gray-700">Quantity</h2><p>${med.quantity}</p></div>
+                <div><h2 class="font-semibold text-gray-700">Expiry</h2><p>${med.expiry_date.split('T')[0]}</p></div>
+                ${med.cost > 0 ? `<div><h2 class="font-semibold text-gray-700">Cost</h2><p>₹${med.cost}</p></div>` : ''}
+              </div>
+              <div class="flex justify-end mt-4">
+                <button class="${med.cost > 0 ? 'bg-green-500 hover:bg-green-600' : 'bg-blue-500 hover:bg-blue-600'} text-white px-4 py-2 rounded-xl" onclick="requestMedicine(${med.id}, '${med.lender_name}', '${med.medicine_name}', '${med.quantity}', '${med.expiry_date.split('T')[0]}', ${med.cost || 0})">
+                  ${med.cost > 0 ? 'Buy' : 'Free'}
+                </button>
+              </div>
+            `;
+  
+            if (med.cost > 0) {
+              buyContainer.appendChild(card);
+            } else {
+              freeContainer.appendChild(card);
+            }
+          });
+        } catch (error) {
+          console.error("Error fetching medicines:", error);
+        }
+      }
+  
+      async function requestMedicine(medicineId) {
+  const borrowerEmail = prompt("Enter your email:");
+  if (!borrowerEmail) {
+    alert("Borrower email is required.");
+    return;
+  }
+
+  try {
+    const res = await fetch('http://localhost:5000/api/medicine/request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ borrowerEmail, medicineId })
+    });
+
+    const result = await res.json();
+
+    if (result.qrData) {
+      alert("QR Code has been sent to your email!");
+      showQRCode(result.qrData);
+    } else {
+      alert(result.message || "Request processed");
+    }
+  } catch (err) {
+    console.error("Error:", err);
+    alert("Request failed.");
+  }
+}
+    
+      fetchMedicines();
+    </script>
+  </body>
+  </html>

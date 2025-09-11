@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Medicine</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #333;
+      padding: 15px 20px;
+      color: white;
+    }
+
+
+
+
+    /* Mobile Menu */
+    .hamburger-menu {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+
+      .nav-links,
+      .login-container {
+        display: none;
+      }
+
+      .hamburger-menu {
+        display: block;
+      }
+    }
+
+
+
+
+    /* Navigation Buttons */
+    .prev-btn,
+    .next-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
+    }
+
+    .prev-btn:hover,
+    .next-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+
+    .how-it-works-section {
+      text-align: center;
+      padding: 50px 20px;
+      /* Extra padding for smaller screens */
+      background-color: #12e71d;
+      overflow: hidden;
+      /* Prevent content from overflowing */
+    }
+
+    .horizontal-container {
+      width: 90%;
+      /* Reduced width for safety */
+      margin: 0 auto;
+      /* Center the container */
+      white-space: nowrap;
+      background: #fffbea;
+      border: 1px solid #ebebeb;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      /* Enable horizontal scrolling on small devices */
+      box-sizing: border-box;
+      /* Include padding in width calculations */
+    }
+
+    .steps-list {
+      display: flex;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      justify-content: center;
+      /* Align items properly */
+    }
+
+    .step {
+      flex: 0 0 auto;
+      text-align: center;
+      margin-right: 20px;
+      padding: 20px;
+      background-color: #e0f7fa;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .step:last-child {
+      margin-right: 0;
+    }
+
+    /* Overall Styling */
+    .mission-vision-section {
+      background-color: #f4f9ff;
+      /* Light background for subtlety */
+      padding: 60px 20px;
+      font-family: 'Poppins', sans-serif;
+      /* Clean and modern font */
+      color: #333;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      /* Space between Mission and Vision sections */
+    }
+
+    /* Section Titles */
+    .section-title {
+      font-size: 2.5rem;
+      color: #1565c0;
+      /* Vibrant blue for titles */
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+
+    /* Mission Section */
+    .mission-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .mission-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      /* Ensures responsiveness */
+    }
+
+    .mission-text {
+      flex: 1;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+      text-align: left;
+    }
+
+    .mission-image {
+      flex: 1;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .mission-image:hover {
+      transform: scale(1.05);
+      /* Interactive hover effect */
+    }
+
+    /* Vision Section */
+    .vision-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .vision-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      /* Ensures responsiveness */
+    }
+
+    .vision-text {
+      flex: 1;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+      text-align: left;
+    }
+
+    .vision-image {
+      flex: 1;
+      max-width: 400px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .vision-image:hover {
+      transform: scale(1.05);
+      /* Interactive hover effect */
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+
+      .mission-content,
+      .vision-content {
+        flex-direction: column;
+        /* Stack content vertically */
+        text-align: center;
+      }
+
+      .mission-text,
+      .vision-text {
+        text-align: center;
+      }
+
+      .mission-image,
+      .vision-image {
+        max-width: 100%;
+      }
+    }
+
+    /* How it Works Section */
+    .how-it-works-section {
+      padding: 60px 20px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .how-it-works-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      color: #333;
+    }
+
+    .how-it-works-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .how-it-works-card {
+      background-color: #f9f9f9;
+      border-radius: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 30px 20px;
+      width: 280px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .how-it-works-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .how-it-works-card i {
+      font-size: 40px;
+      color: #1565c0;
+      margin-bottom: 15px;
+    }
+
+    .how-it-works-card h3 {
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 10px;
+    }
+
+    .how-it-works-card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav>
+    <!-- Logo -->
+    <div class="logo">
+      <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\logo.gif" alt="GIF Logo" width="300"
+        height="600">
+
+      <span>MediSetu</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <!-- <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="lender.html" onclick="checkSignupForLender(); return false;">Lender</a></li>
+      <li><a href="borrower.html" onclick="checkSignupForBorrower(); return false;">Borrower</a></li>
+    </ul> -->
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="lender.html" id="lenderLink">Lender</a></li>
+        <li><a href="borrower.html" id="borrowerLink">Borrower</a></li>
+      </ul>
+    </nav>
+    <!-- <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <a href="lender.html" onclick="checkSignupForLender(); return false;">Go to Lender Page</a>
+      <a href="borrower.html" onclick="checkSignupForBorrower(); return false;">Go to Borrower Page</a>
+
+    </ul> -->
+
+    <!-- Search Bar -->
+    
+
+
+
+    <!-- Mobile Menu Icon -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Menu -->
+  <ul class="mobile-nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#" class="login-btn">Login</a></li>
+    <li><a href="#">Sign Up</a></li>
+  </ul>
+
+  <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\medicine_bg.jpg"
+    alt="Medicine Lending Banner" class="banner" width="1550" height="500">
+  <section class="mission-vision-section">
+    <div class="container">
+      <!-- Our Mission -->
+      <div class="mission-section">
+
+        <div class="mission-content">
+          <p class="mission-text">
+            At MediSetu, our mission is to bring hope and healing to every individual by providing seamless access to
+            essential medicines.
+            Together, we envision healthier communities and brighter futures.
+          </p>
+          <img src="images/mission.jpg" alt="Our Mission" class="mission-image">
+        </div>
+      </div>
+
+      <!-- Our Vision -->
+      <div class="vision-section">
+
+        <div class="vision-content">
+          <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\vision.png" alt="Our Vision"
+            class="vision-image">
+          <p class="vision-text">
+            We dream of a world where health equity knows no boundaries—where every individual, no matter where they
+            are, can lead a healthier,
+            happier life through innovation, trust, and compassion.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- How it Works Section -->
+  <section class="how-it-works-section">
+    <h2>How It Works</h2>
+    <div class="how-it-works-container">
+      <div class="how-it-works-card">
+        <i class="fa fa-user-plus"></i>
+        <h3>Create Account</h3>
+        <p>Sign up easily as a borrower or lender in just a few steps.</p>
+      </div>
+      <div class="how-it-works-card">
+        <i class="fa fa-handshake-o"></i>
+        <h3>Connect</h3>
+        <p>Lenders and borrowers connect based on available medicine needs.</p>
+      </div>
+      <div class="how-it-works-card">
+        <i class="fa fa-medkit"></i>
+        <h3>Exchange</h3>
+        <p>Medicines are exchanged or donated with verified details.</p>
+      </div>
+      <div class="how-it-works-card">
+        <i class="fa fa-check-circle"></i>
+        <h3>Confirm & Track</h3>
+        <p>Get confirmation, track history, and contribute to a healthier world.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('active');
+    }
+  </script>
+
+
+
+  <!-- info section -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              Contact
+            </h4>
+            <div class="box">
+              <div class="img-box">
+                <img src="images/telephone-symbol-button.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  +01 123567894
+                </h6>
+              </div>
+            </div>
+            <div class="box">
+              <div class="img-box">
+                <img src="images/email.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  demo@gmail
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h4>
+              Menu
+            </h4>
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html"> About </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lender.html"> Lender </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="borrower.html"> Borrower </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="feedbackform.html"> Feedback </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info_news">
+            <h4>
+              newsletter
+            </h4>
+            <form id="subscribeForm">
+              <div class="form-group">
+                <input type="email" id="emailInput" class="form-control" placeholder="Enter your email" required>
+              </div>
+
+              <div class="d-flex justify-content-center justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary px-4">
+                  Subscribe
+                </button>
+              </div>
+
+              <!-- ✅ Message display -->
+              <div id="subscribeMessage" class="mt-2" style="color: green; text-align: center;"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="container-fluid footer_section"></section>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+  <script>
+    function handleSubmit() {
+      // You can add form validation here if needed
+      document.getElementById("formMessage").innerText = "Thank you! We'll get back to you shortly.";
+
+      // Reset the form
+      document.getElementById("contactForm").reset();
+    }
+  </script>
+  <script>
+    document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop form from refreshing
+
+      const email = document.getElementById("emailInput").value;
+      const messageDiv = document.getElementById("subscribeMessage");
+
+      // Basic email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailPattern.test(email)) {
+        messageDiv.style.color = "green";
+        messageDiv.textContent = "Thanks for subscribing!";
+        this.reset();
+      } else {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Please enter a valid email address.";
+      }
+    });
+  </script>
+  <script>
+    // Example check: replace this with your actual login logic
+    const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
+  
+    document.getElementById("lenderLink").addEventListener("click", function(event) {
+      if (!isLoggedIn) {
+        event.preventDefault();
+        alert("Please sign up or log in to access the Lender page.");
+      }
+    });
+  
+    document.getElementById("borrowerLink").addEventListener("click", function(event) {
+      if (!isLoggedIn) {
+        event.preventDefault();
+        alert("Please sign up or log in to access the Borrower page.");
+      }
+    });
+  </script>
+</body>
+
+</html>

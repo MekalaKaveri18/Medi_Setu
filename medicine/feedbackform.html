@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback Form</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" />
+  <link href="css/responsive.css" rel="stylesheet" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      margin: 0;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #f4f6f9;
+    }
+
+    .feedback-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .feedback-container h2 {
+      color: #4caf50;
+    }
+
+    .feedback-container label {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .feedback-container input,
+    .feedback-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .feedback-container textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .feedback-container button {
+      background-color: #4caf50;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .feedback-container button:hover {
+      background-color: #45a049;
+    }
+
+    .thank-you-message {
+      display: none;
+      background-color: #050705;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .thank-you-message h3 {
+      color: #e2eae3;
+    }
+
+    .stars {
+      display: flex;
+      /* Align the stars horizontally */
+      justify-content: center;
+      /* Optionally center the stars */
+      font-size: 30px;
+      /* Adjust the size of the stars */
+      flex-direction: row-reverse;
+    }
+
+    .stars input {
+      display: none;
+      /* Hide the radio buttons */
+    }
+
+    .stars label {
+      color: #ccc;
+      /* Default star color */
+      cursor: pointer;
+      margin: 0 5px;
+      /* Space between stars */
+    }
+
+    .stars input:checked~label {
+      color: #f39c12;
+      /* Color when a star is selected */
+    }
+
+    .stars input:checked~label~label {
+      color: #f39c12;
+      /* Color of the stars when selected */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid">
+    <nav>
+      <div class="logo">
+        <img src="C:\Users\HP\Krishna\medicine\projects\medicine\medicine\images\logo.gif" alt="GIF Logo" width="300"
+          height="600">
+        <span>MediSetu</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="lender.html">Lender</a></li>
+        <li><a href="borrower.html">Borrower</a></li>
+      </ul>
+
+
+    </nav>
+  </div>
+
+
+  <div class="feedback-container">
+    <h2>We Value Your Feedback</h2>
+    <form id="feedbackForm">
+      <label for="name">Your Name:</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Your Email:</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="feedback">Your Feedback:</label>
+      <textarea id="feedback" name="feedback" placeholder="Share your thoughts..." required></textarea>
+      <div class="stars">
+        <input type="radio" id="star1" name="rating" value="1">
+        <label for="star1" class="fa fa-star"></label>
+
+        <input type="radio" id="star2" name="rating" value="2">
+        <label for="star2" class="fa fa-star"></label>
+
+        <input type="radio" id="star3" name="rating" value="3">
+        <label for="star3" class="fa fa-star"></label>
+
+        <input type="radio" id="star4" name="rating" value="4">
+        <label for="star4" class="fa fa-star"></label>
+
+        <input type="radio" id="star5" name="rating" value="5">
+        <label for="star5" class="fa fa-star"></label>
+      </div>
+
+
+
+      <button type="submit">Submit
+      </button>
+    </form>
+
+    <div id="thank-you-message" class="thank-you-message">
+      <h3>Thank you for your feedback!</h3>
+      <p>We appreciate you taking the time to help us improve.</p>
+    </div>
+  </div>
+
+  <script>
+    // Display the thank you message after form submission
+    document.getElementById('feedbackForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Prevent form from submitting
+
+      // Hide the form
+      document.querySelector('.feedback-container').style.display = 'Thankyou';
+
+      // Show thank you message
+      document.getElementById('thank-you-message').style.display = 'block';
+    });
+
+  </script>
+
+</body>
+
+</html>

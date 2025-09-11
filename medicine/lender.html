@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Medicine</title>
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css" />
+
+  <!-- font awesome style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700|Roboto:400,700&display=swap" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="css/responsive.css" rel="stylesheet" />
+
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #333;
+      padding: 15px 20px;
+      color: white;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 50px;
+      margin-right: 10px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links li {
+      margin: 0 15px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .login-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .login-btn {
+      margin-right: 15px;
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Signup Dropdown */
+    .signup-dropdown {
+      position: relative;
+    }
+
+    .signup-btn {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: white;
+      top: 30px;
+      right: 0;
+      min-width: 150px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 10px;
+      text-decoration: none;
+      color: black;
+    }
+
+    .signup-dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    /* Mobile Menu */
+    .hamburger-menu {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .mobile-nav.active {
+      display: flex;
+    }
+
+    .mobile-nav a {
+      padding: 10px;
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+
+      .nav-links,
+      .login-container {
+        display: none;
+      }
+
+      .hamburger-menu {
+        display: block;
+      }
+    }
+
+
+    /* Why Lend Section */
+    .why-lend-section {
+      background-color: white;
+      /* Subtle blue background for calmness */
+      padding: 50px 20px;
+      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      color: #f70d0d;
+    }
+
+    .container {
+      max-width: 800px;
+      /* Keeps content compact and focused */
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Question Title Styling */
+    .question-title {
+      font-size: 2rem;
+      color: #87cefa;
+      /* Vibrant blue for title */
+      margin-bottom: 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      text-align: center;
+    }
+
+    /* Benefits List Styling */
+    .lend-benefits {
+      list-style-type: none;
+      /* Removes default bullets */
+      padding: 0;
+      margin: 0;
+    }
+
+    .benefit-item {
+      font-size: 1.2rem;
+      color: #333;
+      /* Neutral text color */
+      margin: 15px 0;
+      /* Space between items */
+      padding: 15px;
+      background-color: #eaf4fc;
+      /* Light blue background for items */
+      border-left: 5px solid #0056b3;
+      /* Bold left border for emphasis */
+      border-radius: 5px;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      /* Interactive hover effect */
+    }
+
+    /* Hover Effects */
+    .benefit-item:hover {
+      transform: scale(1.02);
+      /* Slight zoom */
+      background-color: #cce7f9;
+      /* Darker blue on hover */
+      cursor: pointer;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .question-title {
+        font-size: 1.8rem;
+      }
+
+      .benefit-item {
+        font-size: 1rem;
+      }
+    }
+
+
+
+    /* Container for Registration Section */
+    .register-container {
+      background: linear-gradient(to right, #e3f2fd, #fce4ec);
+      /* Gentle gradient for elegance */
+      padding: 50px 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Unique Heading */
+    .register-heading {
+      font-size: 2rem;
+      color: #004d99;
+      /* Bold blue for vibrancy */
+      text-align: center;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      background: -webkit-linear-gradient(#0056b3, #ff5e57);
+      /* Gradient text */
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+
+
+    .amazing-button-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .amazing-button-container {
+      text-align: center;
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+
+    }
+
+    .amazing-button {
+      padding: 15px 30px;
+      background-color: #ff5e57;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      display: inline-block;
+      margin-top: 10px;
+
+    }
+
+    .amazing-button:hover {
+      background-color: #e53935;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <!-- Logo -->
+    <div class="logo">
+      <img
+        src="C:\Users\HP\Shivaji\Hanuman\medicine\images\logo.gif"
+        alt="GIF Logo" width="300" height="600">
+
+      <span>MediSetu</span>
+    </div>
+
+    <!-- Navigation Links -->
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+
+      <li><a href="lender.html">Lender</a></li>
+      <li><a href="borrower.html">Borrower</a></li>
+    </ul>
+
+    <!-- Search Bar -->
+
+    <!-- Mobile Menu Icon -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+      <i class="fa fa-bars"></i>
+    </div>
+  </nav>
+
+  <!-- Mobile Navigation Menu -->
+  <ul class="mobile-nav">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Services</a></li>
+    <li><a href="#">Contact</a></li>
+    <li><a href="#" class="login-btn">Login</a></li>
+    <li><a href="#">Sign Up</a></li>
+  </ul>
+  <section class="why-lend-section">
+    <div class="container">
+      <h2 class="question-title">Why You Should Lend?</h2>
+      <ul class="lend-benefits">
+        <li class="benefit-item">Helping in Emergencies</li>
+        <li class="benefit-item">Supporting the Community</li>
+        <li class="benefit-item">Reducing Medicine Waste</li>
+        <li class="benefit-item">Providing Quick Relief</li>
+        <li class="benefit-item">Promoting a Sharing Culture</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Button Section -->
+  <section style="margin-bottom: 40px;">
+    <div class="amazing-button-container">
+      <button class="amazing-button" onclick="window.location.href='form.html'">
+        Click Here to Lend!
+      </button>
+    </div>
+  </section>
+
+
+
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="info_contact">
+            <h4>
+              Contact
+            </h4>
+            <div class="box">
+              <div class="img-box">
+                <img src="images/telephone-symbol-button.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  +01 123567894
+                </h6>
+              </div>
+            </div>
+            <div class="box">
+              <div class="img-box">
+                <img src="images/email.png" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  demo@gmail
+                </h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info_menu">
+            <h4>
+              Menu
+            </h4>
+            <ul class="navbar-nav  ">
+              <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html"> About </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="lender.html"> Lender </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="borrower.html"> Borrower </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="feedbackform.html"> Feedback </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="info_news">
+            <h4>
+              newsletter
+            </h4>
+            <form id="subscribeForm">
+              <div class="form-group">
+                <input type="email" id="emailInput" class="form-control" placeholder="Enter your email" required>
+              </div>
+
+              <div class="d-flex justify-content-center justify-content-end mt-3">
+                <button type="submit" class="btn btn-primary px-4">
+                  Subscribe
+                </button>
+              </div>
+
+              <!-- ✅ Message display -->
+              <div id="subscribeMessage" class="mt-2" style="color: green; text-align: center;"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid footer_section"></section>
+
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+  <script>
+    function handleSubmit() {
+      // You can add form validation here if needed
+      document.getElementById("formMessage").innerText = "Thank you! We'll get back to you shortly.";
+
+      // Reset the form
+      document.getElementById("contactForm").reset();
+    }
+  </script>
+
+  <script>
+    document.getElementById("subscribeForm").addEventListener("submit", function (event) {
+      event.preventDefault(); // Stop form from refreshing
+
+      const email = document.getElementById("emailInput").value;
+      const messageDiv = document.getElementById("subscribeMessage");
+
+      // Basic email validation
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (emailPattern.test(email)) {
+        messageDiv.style.color = "green";
+        messageDiv.textContent = "Thanks for subscribing!";
+        this.reset();
+      } else {
+        messageDiv.style.color = "red";
+        messageDiv.textContent = "Please enter a valid email address.";
+      }
+    });
+  </script>
+
+
+  
+
+</body>
+
+</html>
