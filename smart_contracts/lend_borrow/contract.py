@@ -130,5 +130,5 @@ class MedicineLendingPlatform(ARC4Contract):
         for i in algopy.urange(self.medicines.length):
             m = self.medicines[i].copy()
             if m.name == name:
-                return arc4.Bool(Txn.first_valid_time > m.expiry)  # Use the global Txn object
+                return arc4.Bool(Txn.first_valid_time > m.expiry)  # Use the global Txn objects
         return arc4.Bool(True)
