@@ -41,7 +41,7 @@ const addMedicineController = async (req, res) => {
 
     res.status(201).json({ message: "Medicine added successfully!" });
   } catch (error) {
-    console.error('❌ Error adding medicine:', error);
+    console.error('❌ Error in adding medicine:', error);
     res.status(500).json({ error: 'Failed to add medicine' });
   }
 };
